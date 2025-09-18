@@ -2,26 +2,22 @@
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path']; //current uri
 
-/* if($uri === '/') {
-    require 'controllers/index.php';
-} else if ($uri === '/about') {
-    require 'controllers/about.php';
-} else if ($uri === '/contact') {
-    require 'controllers/contact.php';
-}
- */
-
 $routes = [
     '/' => 'controllers/index.php',
     '/about' => 'controllers/about.php',
+    '/notes' => 'controllers/notes.php',
+    '/note' => 'controllers/note.php',
     '/contact' => 'controllers/contact.php',
 ];
 
 function routeToController($uri, $routes) {
 
     if(array_key_exists($uri, $routes)) { //check if uri exists in array of routes
+        
         require $routes[$uri];
+    
     } else {
+        
         abort();
     }
 }
